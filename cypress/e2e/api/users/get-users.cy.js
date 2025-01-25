@@ -14,7 +14,6 @@ describe('GET api/users', () => {
   });
 
   it('TC02| Validar que la respuesta sea en formato JSON y que el tiempo de respuesta sea menor a 2 segundos', () => {
-    console.log(response.headers['content-type']); // Agregar log para depuración
     expect(response.headers['content-type']).to.include('application/json');
     expect(response.duration).to.be.lessThan(2000);
   });

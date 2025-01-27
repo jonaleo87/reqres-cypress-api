@@ -1,26 +1,26 @@
-describe('POST api/users', () => {
+describe('PUT api/users', () => {
     let userData;
     let response;
 
-
     before(() => {
-        cy.fixture('users').then((data) => {
+        cy.fixture('put-users').then((data) => {
             userData = data;
         });
     });
 
     beforeEach(() => {
         cy.request({
-            method: 'POST',
-            url: `${Cypress.env('baseUrl')}/api/users`,
+            method: 'PUT',
+            url: `${Cypress.env('baseUrl')}/api/users/2`,
             body: userData,
         }).then((res) => {
             response = res;
         });
     });
 
-    it('CP01| Validar que el status de la respuesta sea 201', () => {
-        expect(response.status).to.eq(201);
+
+    it('CP01| Validar que el status de la respuesta sea 200', () => {
+        expect(response.status).to.eq(200);
     });
 
     it('CP02| Validar que el tiempo de respuesta sea menor a 2 segundos', () => {
@@ -42,9 +42,7 @@ describe('POST api/users', () => {
 
     it('CP05| Validar que existan todas las propiedades principales de la respuesta y devuelvan los tipos de datos esperados', () => {
         expect(response.body).to.have.property('name').and.to.be.a('string');
-        expect(response.body).to.have.property('email').and.to.be.a('string');
         expect(response.body).to.have.property('job').and.to.be.a('string');
-        expect(response.body).to.have.property('id').and.to.be.a('string');
-        expect(response.body).to.have.property('createdAt').and.to.be.a('string');
+        expect(response.body).to.have.property('updatedAt').and.to.be.a('string');
     });
 });

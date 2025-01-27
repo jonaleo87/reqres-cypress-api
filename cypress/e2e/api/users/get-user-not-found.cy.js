@@ -5,7 +5,7 @@ describe('GET api/users/23', () => {
         response = await cy.request({
             method: 'GET',
             url: `${Cypress.env('baseUrl')}/api/users/23`,
-            failOnStatusCode: false, // No fallar en códigos de estado 4xx
+            failOnStatusCode: false,
         });
     });
 
